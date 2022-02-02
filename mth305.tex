@@ -1,0 +1,515 @@
+%% LyX 2.3.6 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,english]{extarticle}
+\usepackage{ae,aecompl}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\setlength{\parskip}{\bigskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{setspace}
+\setstretch{1.1}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\theoremstyle{definition}
+\newtheorem*{example*}{\protect\examplename}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+
+\@ifundefined{date}{}{\date{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\AtBeginDocument{
+\addtolength{\abovedisplayskip}{0ex}
+\addtolength{\abovedisplayshortskip}{0ex}
+\addtolength{\belowdisplayskip}{0ex}
+\addtolength{\belowdisplayshortskip}{0ex}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\examplename}{Example}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+\title{Complex Analysis}
+\author{Ronald Mangang}
+\maketitle
+\begin{abstract}
+\noindent Complex analysis investigates functions of complex variables.
+Holomorphic functions (also called analytic functions) are the heart
+of complex analysis. These functions behave very nicely --- for instance,
+they are infinitely differentiable and are equal to their own Taylor
+series. These notes are taken during a spring 2022 undergrad course
+of MTH305: Complex Analysis course at IISER Mohali. 
+\end{abstract}
+\newpage
+
+\section{Complex numbers}
+
+\subsection{Algebra of complex numbers}
+
+Using elementary algebra, one finds the square root of a complex number
+$\alpha+i\beta$ as
+\begin{equation}
+\sqrt{\alpha+i\beta}=\pm\left(\sqrt{\frac{\alpha+\sqrt{\alpha^{2}+\beta^{2}}}{2}}+i\frac{\beta}{|\beta|}\sqrt{\frac{-\alpha+\sqrt{\alpha^{2}+\beta^{2}}}{2}}\right)
+\end{equation}
+provided that $\beta\ne0$. If $\beta=0$ the square roots are $\pm\sqrt{\alpha}$
+if $\alpha\geq0$, $\pm i\sqrt{-\alpha}$ if $\alpha<0$.
+
+A complex number $\alpha+i\beta$ may be represented in various ways.
+It can be associated to the coordinate $(\alpha,\beta)$ in the two-dimensional
+plane or the matrix
+\[
+\begin{pmatrix}\alpha & \beta\\
+-\beta & \alpha
+\end{pmatrix}.
+\]
+One can verify that these representations are all isomorphic to one
+another. $\mathbb{C}$ can also be thought as the field $\mathbb{R}[x]/(x^{2}+1)$.
+
+The absolute value (or modulus) has the following properties
+\begin{align}
+|z_{1}+z_{2}|^{2} & =|z_{1}|^{2}+|z_{2}|^{2}+2\text{ Re }z_{1}\bar{z_{2}},\\
+|z_{1}-z_{2}|^{2} & =|z_{1}|^{2}+|z_{2}|^{2}-2\text{ Re }z_{1}\bar{z_{2}}.
+\end{align}
+The triangle inequality is particularly important and shows that $\mathbb{C}$
+is a metric space.
+\begin{equation}
+|z_{1}+z_{2}|\leq|z_{1}|+|z_{2}|.
+\end{equation}
+Cauchy-Schwarz inequality states that
+\begin{equation}
+|\sum_{j=1}^{n}a_{j}b_{j}|^{2}\leq\sum_{j=1}^{n}|a_{j}|^{2}\sum_{j=1}^{n}|b_{j}|^{2}.
+\end{equation}
+for complex numbers $a_{j}$ and $b_{j}$.
+
+\subsection{Geometry of complex numbers}
+
+\textbf{de Moivre's formula. }The following formula gives an easy
+way to express $\cos n\phi$ and $\sin n\phi$ in terms of $\cos\phi$
+and $\sin\phi$.
+\begin{equation}
+(\cos\phi+i\sin\phi)^{n}=\cos n\phi+i\sin n\phi.
+\end{equation}
+It follows from the above formula that the $n$th roots of a complex
+number $z=r(\cos\phi+i\sin\phi)$ are given by
+\begin{equation}
+\sqrt[n]{z}=\sqrt[n]{r}\left[\cos\left(\frac{\phi}{n}+k\frac{2\pi}{n}\right)+\sin\left(\frac{\phi}{n}+k\frac{2\pi}{n}\right)\right].
+\end{equation}
+where $k=0,1,\ldots,n-1$. These $n$th roots are the vertices of
+a regular $n$-gon. For a particularly interesting case, set
+\begin{equation}
+\omega=\cos\frac{2\pi}{n}+i\sin\frac{2\pi}{n}.
+\end{equation}
+Then the $n$th roots of unity are $1,\omega,\omega^{2},\ldots,\omega^{n-1}$.
+
+\textbf{Analytic geometry. }Often analytic geometry on the complex
+plane gives an easier or more elegant way to solve problems than using
+$x$ and $y$ in $\mathbb{R}^{2}.$
+
+A directed line $z=a+bt$ determines a right half plane consisting
+of all points $z$ with $\text{Im }(z-a)/b<0$ and a left half plane
+with $\text{Im }(z-a)/b>0$.
+
+\textbf{The Riemann sphere. }Consider the unit sphere $S$ in the
+three-dimensional space given by $x_{1}^{2}+x_{2}^{2}+x_{3}^{3}=1$.
+To each $(x_{1},x_{2},x_{3})$ on $S$ except $(0,0,1)$ we associate
+a complex number 
+\begin{equation}
+z=\frac{x_{1}+ix_{2}}{1-x_{3}}.
+\end{equation}
+This correspondence is one-one. A little computation yields
+\begin{equation}
+x_{1}=\frac{z+\bar{z}}{1+|z|^{2}},\ x_{2}=\frac{z-\bar{z}}{i(1+|z|^{2})},\ x_{3}=\frac{|z|^{2}-1}{|z|^{2}+1}.
+\end{equation}
+The correspondence is completed by associating the point at $\infty$
+to $(0,0,1)$. This way we regard the sphere as a representation of
+the extended complex plane. The hemisphere $x_{3}<0$ corresponds
+to the disk $|z|<1$ and the hemisphere $x_{3}>0$ to its outside
+$|z|>1.$
+
+\section{Holomorphic functions}
+
+\subsection{Differentiation of complex functions}
+
+Suppose $f$ is a complex-valued function of a single complex variable
+$z$. The derivative of $f$ at a point $z_{0}$ in its domain is
+defined by the limit:
+\begin{equation}
+f^{\prime}(z_{0})=\lim_{z\to z_{0}}\frac{f(z)-f(z_{0})}{z-z_{0}}.
+\end{equation}
+For the limit to exist, it must have the same value for any sequence
+of complex values for $z$ that approach $z_{0}$ on the complex plane.
+Just like real differentiability, complex differentiability is linear
+and obeys the product rule, quotient rule and the chain rule.
+
+The function $f$ is said to be holomorphic on an open set $U$ if
+$f$ is complex differentiable at every point in $U$. If $f$ is
+complex differentiable on some open neighbourhood of $z_{0}$, $f$
+is said to be holomorphic at $z_{0}$.
+\begin{example*}
+\begin{flushleft}
+The function $f(z)=|z|^{2}$ is complex differentiable at exactly
+one point $(z_{0}=0)$. Thus it is not holomorphic at $0$.
+\par\end{flushleft}
+\end{example*}
+
+\subsection{Cauchy-Riemann equations}
+
+Suppose $f(x+iy)=u+iv$ is a holomorphic function. Then
+\begin{equation}
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}\ \text{ and }\ \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}.
+\end{equation}
+These are called the Cauchy-Riemann equations.
+
+A holomorphic function also satisfies:
+\begin{equation}
+\frac{\partial f}{\partial\bar{z}}=0.
+\end{equation}
+which implies that $f$ is functionally independent from $\bar{z}$.
+
+If a function $f(z)=u+iv$ satisfies the Cauchy-Riemann equations
+and if the partial derivates are also continuous then $f$ is holomorphic.
+
+The derivative of $f$ is given by:
+\begin{equation}
+f^{\prime}(z)=\frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}.
+\end{equation}
+Using the Cauchy-Riemann equations, $f^{\prime}(z)$ can be written
+in four different ways. Also,
+\[
+|f^{\prime}(z)|^{2}=\left(\frac{\partial u}{\partial x}\right)^{2}+\left(\frac{\partial u}{\partial y}\right)^{2}=\frac{\partial u}{\partial x}\frac{\partial v}{\partial y}-\frac{\partial u}{\partial y}\frac{\partial v}{\partial x}.
+\]
+That is, $|f^{\prime}(z)|^{2}$ is the Jacobian of $u$ and $v$ with
+respect to $x$ and $y$.
+
+\textbf{Laplace's equation.} If $f(z)=u+iv$ is holomorphic then $u(x,y)$
+and $v(x,y)$ satisfy the Laplace's equation:
+\begin{equation}
+\frac{\partial^{2}u}{\partial x^{2}}+\frac{\partial^{2}v}{\partial y^{2}}=0\ \text{ and }\ \frac{\partial^{2}v}{\partial x^{2}}+\frac{\partial^{2}v}{\partial y^{2}}=0.
+\end{equation}
+
+Any function that satisfies the Laplace's equation is said to be harmonic.
+If two harmonic functions $u$ and $v$ satisfy the Cauchy-Riemann
+equations, then $v$ is said to be the conjugate harmonic function
+of $u$ and $u$ is the conjugate harmonic function of $-v$.
+
+The conjugate of a harmonic function can be found by integration.
+It is determined only upto an additive constant.
+
+There is another way to compute the holomorphic function $f(z)$ whose
+real part is a given harmonic function $u(x,y)$ without use of integration.
+We treat $\bar{f}(\bar{z})$, the conjugate of $f(z)$, as a function
+of $\bar{z}$ only and write
+\[
+u(x,y)=\frac{1}{2}\left[f(x+iy)+\bar{f}(x-iy)\right].
+\]
+This is a formal identity and it holds even when $x$ and $y$ are
+complex. If we substitute $x=z/2,y=z/2i$ we obtain
+\[
+u\left(\frac{z}{2},\frac{z}{2i}\right)=\frac{1}{2}\left[f(z)+\bar{f}(0)\right].
+\]
+Since $f(z)$ is only determined up to a purely imaginary constant,
+we assume that $f(0)$ is real, which implies $\bar{f}(0)=u(0,0)$.
+Then $f(z)$ can be computed by
+\[
+f(z)=2u\left(\frac{z}{2},\frac{z}{2i}\right)-u(0,0).
+\]
+A purely imaginary constant can be added at will.
+
+\subsection{Polynomials and rational functions}
+
+\textbf{Polynomials. }Consider the $n$th degree polynomial in complex
+coefficients:
+\begin{equation}
+P(z)=a_{0}+a_{1}z+\cdots+a_{n}z^{n}.\label{eq:poly}
+\end{equation}
+where $a_{n}\neq0$. It is trivial to see that $P(z)$ is holormorphic.
+We can write
+\begin{equation}
+P(z)=a_{n}(z-\alpha_{1})\cdots(z-\alpha_{n}).\label{eq:polyfacto}
+\end{equation}
+This factorization is unique except for the order of the factors.
+If $\alpha_{i}$ repeats $k$ times $(k\leq n)$ then we say the order
+of the zero $\alpha_{i}$ is $k$.
+
+Suppose $\alpha$ is a zero of order $k$. Then $P(z)=(z-\alpha)^{k}P_{k}(z)$
+where $P_{k}(\alpha)\neq0$. Also, $P(\alpha)=P^{\prime}(\alpha)=\cdots=P^{(k-1)}(\alpha)=0$
+and $P^{(k)}(\alpha)\neq0$ (by successive differentiation). A simple
+zero is a zero of order $1$ and it satisfies $P(\alpha)=0,P^{\prime}(\alpha)\neq0$.
+\begin{thm}[Lucas's theorem]
+If all zeroes of a polynomial $P(z)$ lie in a half plane, then all
+zeroes of the derivative $P^{\prime}(z)$ lie in the same half plane.
+\end{thm}
+
+\begin{proof}
+From \ref{eq:polyfacto} we obtain
+\begin{equation}
+\frac{P^{\prime}(z)}{P(z)}=\frac{1}{z-\alpha_{1}}+\cdots+\frac{1}{z-\alpha_{n}}.
+\end{equation}
+
+{[}ADD MORE CONTENT{]}
+\end{proof}
+\textbf{Rational functions. }Consider the rational function
+\[
+R(z)=\frac{P(z)}{Q(z)}.
+\]
+where $P(z)$ and $Q(z)$ has no common factors. We put $R(z)=\infty$
+when $Q(z)=0$ such that $R(z)$ is continuous in the extended complex
+plane. The zeroes of $Q(z)$ are poles of $R(z)$ and the order of
+a pole is equal to the order of the corresponding zero of $Q(z)$.
+
+The derivative
+\begin{equation}
+R^{\prime}(z)=\frac{P^{\prime}(z)Q(z)-Q^{\prime}(z)P(z)}{Q(z)^{2}}.
+\end{equation}
+exists when $Q(z)\ne0$. As a rational function, $R^{\prime}(z)$
+has the same poles as that of $Q(z)$.
+
+To define $R(\infty)$ we put $R(1/z)=R_{1}(z)$ and equate $R(\infty)=R_{1}(0).$
+Suppose
+\[
+R(z)=\frac{a_{0}+a_{1}z+\cdots+a_{n}z^{n}}{b_{0}+b_{1}z+\cdots+b_{m}z^{m}}.
+\]
+Then 
+\[
+R_{1}(z)=z^{m-n}\frac{a_{0}z^{n}+\cdots+a_{n}}{b_{0}z^{m}+\cdots+b_{m}}.
+\]
+If $m>n$ $R(z)$ has a zero of order $m-n$ at $\infty$, if $m<n$
+the point at $\infty$ is a pole of order $n-m$ and if $m=n$ $R(\infty)=a_{n}/b_{n}$.
+
+The number of zeroes, including those at $\infty$, is equal to $\max(m,n)$.
+The number of poles is the same. This common number is called the
+order of $R(z)$.
+
+$R(z)-a$ and $R(z)$ have the same order for a constant $a$. Thus
+a rational funcrtion $R(z)$ of order $p$ has $p$ zeroes and $p$
+poles, and every equation $R(z)=a$ has exactly $p$ roots.
+
+Rational functions of order $1$ are called linear transformations.
+The linear transformation $z+a$ is called a parallel translation
+and $1/z$ is an inversion.
+
+\textbf{Partial fractions. }Suppose $Q(z)$ is a polynomial with distinct
+roots $\alpha_{1},\ldots,\alpha_{n}$ and if $P(z)$ is a polynomial
+of degree $<n$ then
+\begin{equation}
+\frac{P(z)}{Q(z)}=\sum_{k=1}^{n}\frac{P(\alpha_{k})}{Q^{\prime}(\alpha_{k})(z-\alpha_{k})}.
+\end{equation}
+This is also called Heavyside's cover-up method of decomposing a rational
+function into partial fractions. We can also write
+\[
+\frac{P(z)}{Q(z)}=\sum_{k=1}^{n}\frac{A_{k}}{(z-\alpha_{k})}
+\]
+where $A_{k}$ are constants and use the method of undetermined coefficients
+to compute $A_{k}$. If $\alpha_{s}$ is a zero of order $p$ and
+every other zero is of order $1$ then we put
+\[
+\frac{P(z)}{Q(z)}=\sum_{k=1,k\ne s}^{n}\frac{A_{k}}{(z-\alpha_{k})}+\frac{A_{s1}}{(z-\alpha_{s})}+\frac{A_{s2}}{(z-\alpha_{s})^{2}}+\cdots+\frac{A_{sp}}{(z-\alpha_{s})^{p}}.
+\]
+We do the same for every zero of order $>1$.
+
+\subsection{Power series}
+
+\textbf{Sequences. }Often it becomes difficult to prove convergence
+of sequence through explicitly determining its limit. An easier way
+is to prove that it is a Cauchy sequence.
+
+Suppose $\{b_{n}\}$ and $\{a_{n}\}$ are two sequences such that
+$|b_{m}-b_{n}|\leq|a_{m}-a_{n}|$ for all pairs of subscripts then
+under Cauchy's condition, if $\{a_{n}\}$ is a Cauchy sequence, so
+is $\{b_{n}\}$.
+
+\textbf{Series. }To an infinite series
+\begin{equation}
+a_{1}+a_{2}+\cdots+a_{n}+\cdots\label{eq:series}
+\end{equation}
+we associate a sequence of partial sums
+\begin{equation}
+s_{n}=a_{1}+a_{2}+\cdots+a_{n}.
+\end{equation}
+The series converges iff the sequence of its partial sums converges
+and the limit of the sequence is the sum of the series.
+
+The series \ref{eq:series} can be associated with another series
+\begin{equation}
+|a_{1}|+|a_{2}|+\cdots+|a_{n}|+\cdots.\label{eq:abseries}
+\end{equation}
+Since $|a_{n}+a_{n+1}+\cdots+a_{n+p}|\leq|a_{n}|+|a_{n+1}|+\cdots+|a_{n+p}|$,
+the convergence of \ref{eq:abseries} implies that the original series
+\ref{eq:series} is convergent. A series with the property that the
+series formed by the absolute values of the terms converges is said
+to be absolutely convergent.
+
+\textbf{Uniform convergence vs. pointwise convergence. }Consider the
+limit
+\[
+\lim_{n\to\infty}\left(1+\frac{1}{n}\right)x=x.
+\]
+This is true for all $x$. However, to have $|(1+1/n)x-x|=|x|/n<\epsilon$
+for $n\geq n_{0}$ it is necessary that $n_{0}>|x|/\epsilon$. Such
+an $n_{0}$ exists for every fixed $x$ but the requirement cannot
+be met simultaneously for all $x$. This is the case of pointwise
+convergence.
+
+A sequence $\{f_{n}(x)\}$ converges uniformly to $f(x)$ on the set
+$E$ if to every $\epsilon>0$ there exists an $n_{0}$ such that
+$|f_{n}(x)-f(x)|<\epsilon$ for all $n\geq n_{0}$ and all $x$ in
+$E$. Unlike pointwise convergence, $n_{0}$ does not depend of $x$.
+
+Cauchy's condition for uniform convergence would then be: the sequence
+$\{f_{n}(x)\}$ converges uniformly on $E$ iff to every $\epsilon>0$
+there exists an $n_{0}$ such that $|f_{m}(x)-f_{n}(x)|<\epsilon$
+for all $m,n\geq n_{0}$ and all $x$ in $E$.
+
+Also if $|f_{m}(x)-f_{n}(x)|\leq|a_{m}-a_{n}|$ on $E$ and $\{a_{n}\}$
+is convergent then $\{f_{n}(x)\}$ converges uniformly on $E$.
+
+A series with variable terms 
+\[
+f_{1}(x)+f_{2}(x)+\cdots+f_{n}(x)+\cdots
+\]
+has the series with positive terms 
+\[
+a_{1}+a_{2}+\cdots+a_{n}+\cdots
+\]
+for a majorant if $|f_{n}(x)|\leq Ma_{n}$ for some constant $M$
+and for all sufficiently large $n$. The first series is a minorant
+of the second. Then
+\[
+|f_{n}(x)+f_{n+1}(x)+\cdots+f_{n+p}(x)|\leq M(a_{n}+a_{n+1}+\cdots+a_{n+p}).
+\]
+If the majorant converges, the minorant converges uniformly. This
+is called the Weierstrass M test.
+
+\textbf{Power series. }For every power series
+\begin{equation}
+a_{0}+a_{1}z+\cdots+a_{n}z^{n}+\cdots,
+\end{equation}
+where $a_{i},z\in\mathbb{C}$, there exists $R$, $0\leq R\leq\infty$,
+called the radius of covergence such that
+\begin{enumerate}
+\item The series converges absolutely for every $z$ with $|z|<R$. If $0\leq\rho<R$
+the convergence is uniform for $|z|\leq\rho$.
+\item If $|z|>R$ the series diverges.
+\item In $|z|<R$ the sum of the series is analytic whose derivative can
+be obtained by termwise differentiation and the derived series has
+the same radius of convergence.
+\end{enumerate}
+Hadamard's formula gives
+\begin{equation}
+\frac{1}{R}=\lim_{n\to\infty}\sup\sqrt[n]{|a_{n}|}.
+\end{equation}
+It follows that a power series with positive $R$ has derivatives
+of all orders.
+\begin{thm}[Abel's limit theorem]
+ If $\sum_{n=0}^{\infty}a_{n}$ converges, then $f(z)=\sum_{n=0}^{\infty}a_{n}z^{n}\to f(1)$
+as $z\to1$ in such a way that $|1-z|/(1-|z|)$ remains bounded. 
+\end{thm}
+
+
+\subsection{Euler's formula}
+
+\textbf{The exponential. }The solution to the differential equation
+$f^{\prime}(z)=f(z)$ with the initial value $f(0)=1$ can be found
+by representing $f(z)$ as a power series and differentiating it.
+We call this solution the exponential $e^{z}$. We find that
+\begin{equation}
+e^{z}=1+z+\frac{z^{2}}{2!}+\cdots+\frac{z^{n}}{n!}+\cdots
+\end{equation}
+Since $\sqrt[n]{n!}\to\infty$ the exponential $e^{z}$ converges
+in the whole complex plane.
+
+A consequence of the differential equation is
+\begin{equation}
+e^{a+b}=e^{a}\cdot e^{b}.
+\end{equation}
+Since $e^{z}\cdot e^{-z}=1$ it is clear that $e^{z}$ is never $0$.
+Since the series has real coefficients $e^{\bar{z}}$ is the complex
+conjugate of $e^{z}$. Hence $|e^{iy}|^{2}=e^{iy}\cdot e^{-iy}=1$
+and $|e^{x+iy}|=e^{x}$.
+
+\textbf{The trigonometric functions. }The trigonometric functions
+are defined by
+\begin{equation}
+\cos z=\frac{e^{iz}+e^{-iz}}{2},\ \sin z=\frac{e^{iz}-e^{-iz}}{2i}.
+\end{equation}
+Using the expansion of $e^{z}$ we obtain
+\begin{align*}
+\cos z & =1-\frac{z^{2}}{2!}+\frac{z^{4}}{4!}-\cdots\\
+\sin z & =z-\frac{z^{3}}{3!}+\frac{z^{5}}{5!}-\cdots
+\end{align*}
+
+Also we obtain Euler's formula
+\begin{equation}
+e^{iz}=\cos z+i\sin z.
+\end{equation}
+All the trigonometric identities including the definitions of other
+trigonometric functions can be derived. All trigonometric functions
+are rational functions of $e^{iz}.$
+
+\textbf{The logarithm. }By definition, $z=\log w$ is a root of the
+equation $e^{z}=w$. For $w\ne0$ the equation $e^{x+iy}=w$ is equivalent
+to 
+\begin{equation}
+e^{x}=|w|,\ \ \ \ e^{iy}=\frac{w}{|w|}.
+\end{equation}
+Then $x=\log|w|$. Also there is only one $y$ satisfying the above
+equation in the interval $0\leq y<2\pi.$ Of course, it has period
+$2\pi$. Thus
+\[
+\log w=\log|w|+i\arg w.
+\]
+Every complex number other than $0$ has infinitely many logarithms
+which differ from each other by multiples of $2\pi i$. Also if $a\ne0$
+we write
+\[
+a^{b}=e^{b\log a}.
+\]
+See that if \textbf{$a$ }is complex and \textbf{$b$ }is a rational
+number in the reduced form $p/q$ then $a^{b}$ will have exactly
+$q$ values.
+
+The addition theorem of the exponential function yields
+\begin{align*}
+\log(z_{1}z_{2}) & =\log z_{1}+\log z_{2}\\
+\arg(z_{1}z_{2}) & =\arg z_{1}+\arg z_{2},
+\end{align*}
+in the sense that both sides represent the same infinite set of complex
+numbers. If we want to compare a value on the left with a value on
+the right, then we can merely assert that they differ by a multiple
+of $2\pi i$ (or $2\pi)$.
+
+\textbf{The inverse trigonometric functions. }The inverse cosine can
+be obtained by solving the equation
+\[
+\cos z=\frac{1}{2}(e^{iz}+e^{-iz})=w
+\]
+which is a quadratic equation in $e^{iz}$ with the roots $e^{iz}=w\pm\sqrt{w^{2}-1}$
+and hence
+\[
+z=\arccos w=-i\log(w\pm\sqrt{w^{2}-1}).
+\]
+Since $w+\sqrt{w^{2}-1}$ and $w-\sqrt{w^{2}-1}$ are reciprocal numbers
+we may write
+\[
+\arccos w=\pm i\log(w+\sqrt{w^{2}-1}).
+\]
+The inverse sine can then be defined by 
+\[
+\arcsin w=\frac{\pi}{2}-\arccos w.
+\]
+
+
+\section{Mappings}
+\end{document}
